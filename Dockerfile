@@ -12,9 +12,11 @@ RUN apk update --no-cache \
  && sha256sum -sc sum.txt \
  && unzip bw.zip
 
-FROM alpine:3.22
+FROM debian:sid
 
 COPY --from=downloader bw /usr/local/bin/
+
+RUN apt update && apt-get install -y wget
 
 USER 1000
 
